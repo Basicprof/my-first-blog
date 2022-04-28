@@ -1,3 +1,4 @@
 from django.contrib import admin
-
-# Register your models here.
+from basic_api.models import DRFPost
+# DataFlair
+admin.site.register(DRFPost)
