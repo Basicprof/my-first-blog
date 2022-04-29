@@ -19,4 +19,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('robo.urls')),
+    path('rdf/', include('basic_api.urls')),
 ]
