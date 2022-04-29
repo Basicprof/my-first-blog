@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'robo',
     'rest_framework',
     'basic_api',
+    'capitall',
+    'account',
 ]
 
 MIDDLEWARE = [
