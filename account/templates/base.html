@@ -9,11 +9,44 @@
     <meta name=«viewport» content=«width=device-width, initial-scale=1»>
   </head>
   <body>
-    <div id="header">
-      <span class="logo">Bookmarks</span>
-    </div>
+  <header>
+ <div class="container">
+ <div class="row">
+  <div class="col-12">
+      <h1 class="text-center text-while">Видео курс по верстке для начинающий HTML</h1>
+      <div class="itd_play">
+          <div class="itd_triargle"></div>
+      </div>
+      <a href="#footer" class="btn btn-itd btn-lg text-uppercase">Заказать</a>
+ </div>
+ </div>
+   </header>
+<div id="header">
+  <span class="logo">Bookmarks</span>
+  {% if request.user.is_authenticated %}
+    <ul class="menu">
+      <li {% if section == "dashboard" %} class="selected"{% endif %}>
+        <a href="{% url "dashboard" %}">My dashboard</a>
+      </li>
+      <li {% if section == "images" %}class="selected"{% endif %}>
+        <a href="#">Images</a>
+      </li>
+      <li {% if section == "people" %}class="selected"{% endif %}>
+        <a href="#">People</a>
+      </li>
+    </ul>
+  {% endif %}
+  <span class="user">{% if request.user.is_authenticated %}
+      Hello {{ request.user.first_name }},
+      <a href="{% url "logout" %}">Logout</a>
+    {% else %}
+      <a href="{% url "login" %}">Log-in</a>
+    {% endif %}
+  </span>
+</div>
     <div id="content" >
     {% block content %}{% endblock %}
     </div>
+  <footer id="footer"></footer>
   </body>
 </html>
