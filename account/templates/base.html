@@ -1,52 +1,81 @@
 <!DOCTYPE html>
 {% load static %}
 <html>
-  <head>
+<head>
     <title>{% block title %}{% endblock %}</title>
-     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
-      <script src="js/bootstrap.bundle.min.js"></script>
-     <link rel="stylesheet"   href="{% static 'css/base.css' %}" >
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <meta name=«viewport» content=«width=device-width, initial-scale=1»>
-  </head>
-  <body>
-  <header>
- <div class="container">
- <div class="row">
-  <div class="col-12">
-      <h1 class="text-center text-while">Видео курс по верстке для начинающий HTML</h1>
-      <div class="itd_play">
-          <div class="itd_triargle"></div>
-      </div>
-      <a href="#footer" class="btn btn-itd btn-lg text-uppercase">Заказать</a>
- </div>
- </div>
-   </header>
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+    <a class="navbar-brand" href="{% url 'login' %}"> Note-Invest</a>
+    <button class="navbar-roggler" type="button" data-toggle="collapse" data-target="#navbarCollapse"
+            aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+            {% if user.is_authenticated %}
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link dropdown-toggle" href="#" id="userMenu" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{user.username}}
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userMenu">
+                        <a class="dropdown-item" href="{% url 'password_change' %}">Change password</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" href="{% url 'logout' %}">Log out</a>
+                    </div>
+                </li>
+                {% else %}
+                <form class="dorm-inline ml-auto">
+                    <a href="{% url 'login' %}" class="btn btn-outline-secondary">log in</a>
+                    <a href="{% url 'logout' %}" class="btn btn-primaty ml-2">logout</a>
+
+                </form>
+                {% endif %}
+        </div>
+</nav>
+</li>
+
+</ul>
+
+
+</div>
+
+</button>
+
+</nav>
 <div id="header">
-  <span class="logo">Bookmarks</span>
-  {% if request.user.is_authenticated %}
+    <span class="logo">Bookmarks</span>
+    {% if request.user.is_authenticated %}
     <ul class="menu">
-      <li {% if section == "dashboard" %} class="selected"{% endif %}>
-        <a href="{% url "dashboard" %}">My dashboard</a>
-      </li>
-      <li {% if section == "images" %}class="selected"{% endif %}>
-        <a href="#">Images</a>
-      </li>
-      <li {% if section == "people" %}class="selected"{% endif %}>
-        <a href="#">People</a>
-      </li>
+        <li  class="selected" >
+            <a href="{% url 'dashboard' %}">My dashboard</a>
+        </li>
+        <li>
+            <a href="#">Images</a>
+        </li>
+        <li>
+             <a href="#">People</a>
+        </li>
     </ul>
-  {% endif %}
-  <span class="user">{% if request.user.is_authenticated %}
-      Hello {{ request.user.first_name }},
-      <a href="{% url "logout" %}">Logout</a>
-    {% else %}
-      <a href="{% url "login" %}">Log-in</a>
     {% endif %}
+
+    <span class="user">{% if request.user.is_authenticated %}
+      Hello {{ request.user.first_name }},
+      <a href="{% url 'logout' %}">Logout</a>
+        {% else %}
+      <a href="{% url 'login' %}">Log-in</a>
+        {% endif %}
   </span>
 </div>
-    <div id="content" >
+<div id="content">
     {% block content %}{% endblock %}
-    </div>
-  <footer id="footer"></footer>
-  </body>
+</div>
+<footer id="footer"></footer>
+</body>
 </html>
+
+
+

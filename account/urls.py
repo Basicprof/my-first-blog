@@ -1,6 +1,7 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
 from . import views
+
 urlpatterns = [
     # Определенные ранее обработчики.
     # path('login/', views.user_login, name='login'),
@@ -26,5 +27,6 @@ urlpatterns = [
           name='password_reset_confirm'),
     path('reset/done/',
           auth_views.PasswordResetCompleteView.as_view(),
-          name='password_reset_complete')
+          name='password_reset_complete'),
+    path('register/', views.register, name='register')
 ]
