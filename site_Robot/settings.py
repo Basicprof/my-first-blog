@@ -24,9 +24,7 @@ SECRET_KEY = 'django-insecure-rwk(kaa&69*$bq!z65t_14*j6(=aq+ihd1)&0(&7algsq=slyo
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = ['127.0.0.1', '.pythonanywhere.com']
-
+ALLOWED_HOSTS = ['mysite.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -42,6 +40,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'basic_api',
     'capital',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -74,7 +73,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'site_Robot.wsgi.application'
 
-
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+]
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
@@ -132,3 +135,6 @@ LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
 LOGOUT_URL = 'logout'
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+SOCIAL_AUTH_FACEBOOK_KEY = '416763333212627' # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = 'f8371f16dcc06cd0030ed544ba0a46eb' # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
