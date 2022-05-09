@@ -25,6 +25,7 @@ urlpatterns = [
     path('robo/', include('robo.urls')),
     path('rest/', include('basic_api.urls')),
     path('social-auth/', include('social_django.urls', namespace='social')),
+    path('images/', include('images.urls', namespace='images')),
 ]
 
 if settings.DEBUG:
