@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'capital',
     'social_django',
     'images.apps.ImagesConfig',
+    'actions.apps.ActionsConfig',
 ]
 
 MIDDLEWARE = [
@@ -143,3 +144,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 SOCIAL_AUTH_FACEBOOK_KEY = '416763333212627' # Facebook App ID
 SOCIAL_AUTH_FACEBOOK_SECRET = 'f8371f16dcc06cd0030ed544ba0a46eb' # Facebook App Secret
 SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+REDIS_DB = 0
