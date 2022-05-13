@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 import os
 from pathlib import Path
-
+from django.urls import reverse_lazy
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'social_django',
     'images.apps.ImagesConfig',
     'actions.apps.ActionsConfig',
+    'sorl.thumbnail',
 ]
 
 MIDDLEWARE = [
@@ -147,3 +148,8 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 0
+
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
+
+}
