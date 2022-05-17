@@ -17,7 +17,6 @@ r = redis.StrictRedis(host=settings.REDIS_HOST,
                       port=settings.REDIS_PORT,
                       db=settings.REDIS_DB)
 
-
 @login_required
 def image_create(request):
     if request.method == 'POST':
@@ -44,7 +43,6 @@ def image_create(request):
                   'images/image/create.html',
                   {'section': 'images',
                    'form': form})
-
 
 def image_detail(request, id, slug):
     image = get_object_or_404(Image, id=id, slug=slug)
@@ -78,7 +76,6 @@ def image_like(request):
             pass
     return JsonResponse({'status':'ko'})
 
-
 @login_required
 def image_list(request):
     images = Image.objects.all()
@@ -103,7 +100,6 @@ def image_list(request):
     return render(request,
                   'images/image/list.html',
                    {'section': 'images', 'images': images})
-
 
 @login_required
 def image_ranking(request):

@@ -16,15 +16,19 @@
     <span class="logo"> Note-Invest</span>
     {% if request.user.is_authenticated %}
     <ul class="menu">
-        <li  class="selected" >
+        <li class="selected">
             <a href="{% url 'dashboard' %}">My dashboard</a>
         </li>
-        <li>
-            <a href="#">Images</a>
+        <li {% if section == "images" %}class="selected" {% endif %}>
+            <a href="{% url 'images:list' %}">Images</a>
         </li>
-        <li {% if section == "people" %}class="selected"{% endif %}>
-  <a href="{% url 'user_list' %}">People</a>
-</li>
+        <li {% if section == "people" %}class="selected" {% endif %}>
+            <a href="{% url 'user_list' %}">People</a>
+        </li>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-credit-card-fill" viewBox="0 0 16 16">
+  <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v1H0V4zm0 3v5a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7H0zm3 2h1a1 1 0 0 1 1 1v1a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1v-1a1 1 0 0 1 1-1z"/>
+</svg>
+<i class="bi bi-credit-card-fill">TOR</i>
     </ul>
     {% endif %}
 
@@ -37,14 +41,14 @@
   </span>
 </div>
 {% if messages %}
-  <ul class="messages">
+<ul class="messages">
     {% for message in messages %}
-      <li class="{{ message.tags }}">
+    <li class="{{ message.tags }}">
         {{ message|safe }}
         <a href="#" class="close">x</a>
-      </li>
+    </li>
     {% endfor %}
-  </ul>
+</ul>
 {% endif %}
 <div id="content">
     {% block content %}{% endblock %}
@@ -52,9 +56,9 @@
 
 <footer id="footer"></footer>
 <script
-src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script
-src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
 <script>
  var csrftoken = Cookies.get('csrftoken');
   function csrfSafeMethod(method) {
@@ -71,7 +75,10 @@ src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
   $(document).ready(function(){
     {% block domready %}{% endblock %}
   });
+
+
 </script>
+
 </body>
 </html>
 

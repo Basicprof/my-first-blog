@@ -30,6 +30,7 @@ ALLOWED_HOSTS = [
     '127.0.0.1',
     '3f6ad53c.ngrok.io'
 ]
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -50,6 +51,8 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
 ]
 
+STATIC_URL = '/static/'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,6 +62,19 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+if DEBUG:
+    MIDDLEWARE += [
+        'debug_toolbar.middleware.DebugToolbarMiddleware'
+    ]
+    INSTALLED_APPS += [
+        'debug_toolbar',
+    ]
+    INTERNAL_IPS = ["127.0.0.1"]
+    import mimetypes
+    mimetypes.add_type("application/javascript", ".js", True)
+    DEBUG_TOOLBAR_CONFIG = {
+        'INTERCEPT_REDIRECTS': False,
+    }
 
 ROOT_URLCONF = 'site_Robot.urls'
 
@@ -78,6 +94,11 @@ TEMPLATES = [
     },
 ]
 
+DEBUG_TOOLBAR_CONFIG = {
+    'RESULTS_CACHE_SIZE': 3,
+    'SHOW_COLLAPSED': True,
+    'SQL_WARNING_THRESHOLD': 100,
+}
 WSGI_APPLICATION = 'site_Robot.wsgi.application'
 
 AUTHENTICATION_BACKENDS = [
@@ -132,11 +153,11 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
+
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
-
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'site_Robot.settings')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'dashboard'
 LOGIN_URL = 'login'
@@ -151,5 +172,7 @@ REDIS_DB = 0
 
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
-
 }
+THUMBNAIL_DEBUG=True
+def show_toolbar(request): return True
+SHOW_TOOLBAR_CALLBACK = show_toolbar
