@@ -63,6 +63,8 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 if DEBUG:
+    import mimetypes
+    mimetypes.add_type("application/javascript", ".js", True)
     MIDDLEWARE += [
         'debug_toolbar.middleware.DebugToolbarMiddleware'
     ]
@@ -70,8 +72,7 @@ if DEBUG:
         'debug_toolbar',
     ]
     INTERNAL_IPS = ["127.0.0.1"]
-    import mimetypes
-    mimetypes.add_type("application/javascript", ".js", True)
+
     DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
     }
@@ -169,7 +170,8 @@ SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 REDIS_HOST = 'localhost'
 REDIS_PORT = 6379
 REDIS_DB = 0
-
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL  = '/media/'
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse_lazy('user_detail', args=[u.username])
 }
