@@ -51,6 +51,8 @@ INSTALLED_APPS = [
     'sorl.thumbnail',
     'portfolio.apps.PortfolioConfig',
     'shop.apps.ShopConfig',
+    'cart.apps.CartConfig',
+
 ]
 
 STATIC_URL = '/static/'
@@ -94,9 +96,12 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
         },
+
     },
 ]
-
+#Ключ хранения данных в корзине
+#https://docs.djangoproject.com/en/2.0/ref/settings/#sessions.
+CART_SESSION_ID = 'cart'
 DEBUG_TOOLBAR_CONFIG = {
     'RESULTS_CACHE_SIZE': 3,
     'SHOW_COLLAPSED': True,

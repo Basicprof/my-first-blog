@@ -6,4 +6,10 @@ def index(request):
 
 def portfolio_list(request):
     portfolio = Portfolio.objects.all()
-    return render('portfolio/list.html',{'portfolios': portfolio})
+    for a in portfolio:
+        print("===================  ",a.image)
+        print("===================  ", a.title)
+        print("===================  ", a.description)
+        print("===================  ", a.url)
+
+    return render(request, 'portfolio/list.html',{'portfolio': portfolio})

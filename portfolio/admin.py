@@ -3,4 +3,4 @@ from .models import Portfolio
 
 @admin.register(Portfolio)
 class PortforioAdmin(admin.ModelAdmin):
-    list_display = ['title','image','description']
+    list_display = ['title','image','description','url']

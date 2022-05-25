@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+{% load static %}
+{% load thumbnail %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Portfolio</title>
+</head>
+<body>
+<div id="main" class="product-list">
+    <h1>Portfolio</h1>
+    {% for p in portfolio %}
+    <div class="item">
+        <H3> {{ p.title }}</H3>
+        {% thumbnail p.image "70x70" crop="50%" as pi %}
+
+            <img src="{{ pi.url }}" class="image-detail">
+
+        {% endthumbnail %}
+
+        <br>
+        <p>{{ p.description }}</p>
+    </div>
+    {% endfor %}
+</body>
+</html>
