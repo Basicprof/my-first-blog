@@ -26,6 +26,8 @@ urlpatterns = [
     path('rest/', include('basic_api.urls')),
     path('social-auth/', include('social_django.urls', namespace='social')),
     path('images/', include('images.urls', namespace='images')),
+    path('', include('portfolio.urls')),
+    path('shop', include('shop.urls', namespace='shop')),
 ]
 
 if settings.DEBUG:

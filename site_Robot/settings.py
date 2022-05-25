@@ -49,6 +49,8 @@ INSTALLED_APPS = [
     'images.apps.ImagesConfig',
     'actions.apps.ActionsConfig',
     'sorl.thumbnail',
+    'portfolio.apps.PortfolioConfig',
+    'shop.apps.ShopConfig',
 ]
 
 STATIC_URL = '/static/'
